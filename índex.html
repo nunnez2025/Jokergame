@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JOKER HACKER - TESTE DE INVASÃO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+    <!-- Background Image -->
+    <div class="background-image"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">JOKER HACKER - TESTE DE INVASÃO</div>
+    </header>
+
+    <!-- HUD -->
+    <div class="hud">
+        <div class="hud-item">
+            <i class="fas fa-user-secret"></i>
+            <span>Reputação: <span id="reputation">100</span></span>
+        </div>
+        <div class="hud-item">
+            <i class="fas fa-coins"></i>
+            <span>Bits: <span id="bits">500</span></span>
+        </div>
+        <div class="hud-item">
+            <i class="fas fa-microchip"></i>
+            <span>Nível: <span id="level">1</span></span>
+        </div>
+        <div class="hud-item">
+            <i class="fas fa-battery-three-quarters"></i>
+            <span>Energia:</span>
+            <div class="progress-container" style="width: 80px;">
+                <div class="progress-bar" id="energy-bar" style="width: 80%;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Menu Section -->
+        <div id="menu-section" class="section active">
+            <div class="menu-grid">
+                <div class="menu-item" onclick="showSection('invasao')">
+                    <div class="menu-icon"><i class="fas fa-brain"></i></div>
+                    <div class="menu-title">TESTE DE INVASÃO</div>
+                    <div>Protocolo Mental</div>
+                </div>
+                <div class="menu-item" onclick="showSection('missions')">
+                    <div class="menu-icon"><i class="fas fa-bullseye"></i></div>
+                    <div class="menu-title">MISSÕES</div>
+                    <div>Invasões</div>
+                </div>
+                <div class="menu-item" onclick="showSection('shop')">
+                    <div class="menu-icon"><i class="fas fa-shopping-cart"></i></div>
+                    <div class="menu-title">LOJA</div>
+                    <div>Upgrades</div>
+                </div>
+                <div class="menu-item" onclick="showSection('profile')">
+                    <div class="menu-icon"><i class="fas fa-user"></i></div>
+                    <div class="menu-title">PERFIL</div>
+                    <div>Status</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Invasao Section -->
+        <div id="invasao-section" class="section">
+            <div class="game-board">
+                <div class="game-header">TESTE DE INVASÃO - PROTOCOLO MENTAL</div>
+                <div class="invasao-game">
+                    <div class="level-indicator">Nível: <span id="invasao-level">1</span> | Sequência: <span id="sequence-length">3</span> símbolos</div>
+                    
+                    <div class="sequence-display" id="sequence-display">
+                        <div class="sequence-item">?</div>
+                        <div class="sequence-item">?</div>
+                        <div class="sequence-item">?</div>
+                    </div>
+                    
+                    <div class="game-status" id="game-status">Toque em INICIAR para começar</div>
+                    
+                    <div class="user-input">
+                        <button class="input-btn" onclick="selectSymbol('▲')">▲</button>
+                        <button class="input-btn" onclick="selectSymbol('●')">●</button>
+                        <button class="input-btn" onclick="selectSymbol('■')">■</button>
+                        <button class="input-btn" onclick="selectSymbol('♦')">♦</button>
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="startInvasao()" id="start-invasao-btn">
+                        <i class="fas fa-play"></i> INICIAR
+                    </button>
+                    <button class="btn" onclick="resetInvasao()">
+                        <i class="fas fa-redo"></i> REINICIAR
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Missions Section -->
+        <div id="missions-section" class="section">
+            <div class="game-board">
+                <div class="game-header">MISSÕES DE INVASÃO</div>
+                <div style="text-align: center; padding: 2rem;">
+                    <i class="fas fa-lock" style="font-size: 3rem; color: var(--joker-purple); margin-bottom: 1rem;"></i>
+                    <p>Complete o teste de invasão para desbloquear missões!</p>
+                    <button class="btn" onclick="showSection('invasao')">
+                        <i class="fas fa-brain"></i> IR PARA TESTE
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shop Section -->
+        <div id="shop-section" class="section">
+            <div class="game-board">
+                <div class="game-header">LOJA DE UPGRADES</div>
+                <div style="text-align: center; padding: 2rem;">
+                    <i class="fas fa-store" style="font-size: 3rem; color: var(--joker-purple); margin-bottom: 1rem;"></i>
+                    <p>Ganhe bits completando missões e testes!</p>
+                    <button class="btn" onclick="showSection('invasao')">
+                        <i class="fas fa-brain"></i> FAZER TESTE
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Section -->
+        <div id="profile-section" class="section">
+            <div class="game-board">
+                <div class="game-header">PERFIL DO CORINGA</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <h3 style="color: var(--joker-purple); margin-bottom: 1rem;">HABILIDADES</h3>
+                        <div style="margin-bottom: 1rem;">
+                            <div>Velocidade: <span id="speed-level">1</span>/10</div>
+                            <div class="progress-container">
+                                <div class="progress-bar" id="speed-bar" style="width: 10%;"></div>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <div>Lógica: <span id="logic-level">1</span>/10</div>
+                            <div class="progress-container">
+                                <div class="progress-bar" id="logic-bar" style="width: 10%;"></div>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <div>Memória: <span id="memory-level">1</span>/10</div>
+                            <div class="progress-container">
+                                <div class="progress-bar" id="memory-bar" style="width: 10%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="flex: 1; min-width: 250px;">
+                        <h3 style="color: var(--joker-purple); margin-bottom: 1rem;">CONQUISTAS</h3>
+                        <div id="achievements">
+                            <div style="padding: 0.5rem; border-bottom: 1px solid var(--joker-purple);">
+                                <i class="fas fa-trophy"></i> Primeiro Teste
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
+    
+</body>
+</html>
